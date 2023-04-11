@@ -45,9 +45,9 @@ A coluna representa um atributo daquela tabela, normalmente representando uma ca
 
 4.  `DATE` e `TIME`: usados para armazenar datas e horários
 
-5.  `BOOLEAN`: usado para armazenar valores dicotômicos verdadeiro/falso
+5.  `BOOLEAN`: usado para armazenar valores dicotômicos (verdadeiro/falso)
 
-Os tipos tem operadores específicos como veremos futuramente. Além disso, no banco é possível configurar restrições para cada coluna, como:
+Os tipos têm operadores específicos como veremos futuramente. Além disso, no banco é possível configurar restrições para cada coluna, como:
 
 -   Limite de caracteres
 

@@ -183,7 +183,7 @@ Porém quando tratamos de texto podemos ter casos em que não temos certeza dos 
 No exemplo acima buscamos as raças que começam com `'Nelore'` , a seguir veremos como usar o símbolo `%` aliado ao `LIKE` , considerando um campo de texto chamado `Name`
 
 | **LIKE ​**                | **Descrição​**                                          |
-|--------------------------|--------------------------------------------------------|
+|------------------------|-----------------------------------------------|
 | WHERE Name LIKE 'a%'​     | Termos que começam com "a"​                             |
 | WHERE Name LIKE '%a'​     | Termos que terminam com "a"​                            |
 | WHERE Name LIKE '%or%'​   | Termos que contém "or"​                                 |
