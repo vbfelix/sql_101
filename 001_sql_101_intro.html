@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>sql_101</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="001_sql_101_intro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="001_sql_101_intro_files/libs/quarto-html/quarto.js"></script>
+<script src="001_sql_101_intro_files/libs/quarto-html/popper.min.js"></script>
+<script src="001_sql_101_intro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="001_sql_101_intro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="001_sql_101_intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="001_sql_101_intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="001_sql_101_intro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="001_sql_101_intro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="001_sql_101_intro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução-ao-sql" id="toc-introdução-ao-sql" class="nav-link active" data-scroll-target="#introdução-ao-sql">Introdução ao SQL</a></li>
+  <li><a href="#sql-é-único" id="toc-sql-é-único" class="nav-link" data-scroll-target="#sql-é-único">SQL é único?</a></li>
+  <li><a href="#o-que-contempla-o-sql" id="toc-o-que-contempla-o-sql" class="nav-link" data-scroll-target="#o-que-contempla-o-sql">O que contempla o SQL?</a>
+  <ul class="collapse">
+  <li><a href="#ddl" id="toc-ddl" class="nav-link" data-scroll-target="#ddl">DDL</a></li>
+  <li><a href="#dml" id="toc-dml" class="nav-link" data-scroll-target="#dml">DML</a></li>
+  <li><a href="#dcl" id="toc-dcl" class="nav-link" data-scroll-target="#dcl">DCL</a></li>
+  <li><a href="#tcl" id="toc-tcl" class="nav-link" data-scroll-target="#tcl">TCL</a></li>
+  <li><a href="#outras" id="toc-outras" class="nav-link" data-scroll-target="#outras">Outras</a></li>
+  </ul></li>
+  <li><a href="#o-que-existe-além-de-tabelas-em-um-banco" id="toc-o-que-existe-além-de-tabelas-em-um-banco" class="nav-link" data-scroll-target="#o-que-existe-além-de-tabelas-em-um-banco">O que existe além de tabelas em um banco?</a>
+  <ul class="collapse">
+  <li><a href="#schemas" id="toc-schemas" class="nav-link" data-scroll-target="#schemas">Schemas</a></li>
+  <li><a href="#views" id="toc-views" class="nav-link" data-scroll-target="#views">Views</a></li>
+  <li><a href="#procedures" id="toc-procedures" class="nav-link" data-scroll-target="#procedures">Procedures</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#e-como-acesso-um-banco-de-dados" id="toc-e-como-acesso-um-banco-de-dados" class="nav-link" data-scroll-target="#e-como-acesso-um-banco-de-dados">E como acesso um banco de dados?​</a></li>
+  </ul></li>
+  <li><a href="#existem-bancos-não-relacionais" id="toc-existem-bancos-não-relacionais" class="nav-link" data-scroll-target="#existem-bancos-não-relacionais">Existem bancos não-relacionais?</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">sql_101</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introdução-ao-sql" class="level1">
+<h1>Introdução ao SQL</h1>
+<p><strong>O que é SQL?</strong></p>
+<p>SQL significa <em>Structured Query Language.</em></p>
+<p><strong>​O que é <em>query</em>?</strong></p>
+<p>É uma solicitação (consulta) feita ao banco de dados para recuperar, manipular ou inserir dados.</p>
+<p><strong>Voltando a pergunta inicial: O que é SQL?</strong></p>
+<p>É uma linguagem <em>case-insensitive</em>, i.e., ignora o fato das letras serem minúsculas ou maiúsculas no código.</p>
+<p>E é utilizada para gerenciar dados em bancos de dados relacionais.</p>
+<p><strong>O que é banco de dados relacional?​</strong></p>
+<p>É um tipo de banco de dados que armazena dados em tabelas organizadas em linhas e colunas.&nbsp;​</p>
+<p><strong>O que é tabela?</strong></p>
+<p>Uma tabela contém um conjunto de colunas (campos), que representam os atributos dos dados, e cada linha representa um registro contendo os valores dos atributos para aquele registro.</p>
+<p><strong>O que é uma linha?</strong></p>
+<p>A linha representa um registro e dita a unidade daquela tabela, é MUITO importante entender o que a tabela representa no banco para entendermos os registros.</p>
+<p><strong>O que é uma coluna?</strong></p>
+<p>A coluna representa um atributo daquela tabela, normalmente representando uma característica do registro linha, as colunas podem ter alguns tipos, como:</p>
+<ol type="1">
+<li><p><code>INT</code>: usado para armazenar números inteiros, positivos ou negativos</p></li>
+<li><p><code>FLOAT</code> e <code>DOUBLE</code>: usados para armazenar números decimais ou de ponto flutuante</p></li>
+<li><p><code>CHAR</code> e <code>VARCHAR</code>: usados para armazenar <code>strings</code> de caracteres, como nomes, endereços e descrições. Para referência deste tipo de valor é necessário usar os símbolos de aspas simples</p></li>
+<li><p><code>DATE</code> e <code>TIME</code>: usados para armazenar datas e horários</p></li>
+<li><p><code>BOOLEAN</code>: usado para armazenar valores dicotômicos verdadeiro/falso</p></li>
+</ol>
+<p>Os tipos tem operadores específicos como veremos futuramente. Além disso, no banco é possível configurar restrições para cada coluna, como:</p>
+<ul>
+<li><p>Limite de caracteres</p></li>
+<li><p>Não aceitar um determinado valor</p></li>
+<li><p>Estar sempre preenchido<br>
+</p></li>
+</ul>
+<p><strong>E como as tabelas se relacionam?</strong></p>
+<p>Para as tabelas se relacionarem é necessários existem campos entre elas que permitam os vínculos, normalmente são utilizados dois tipos de campos, as chaves primárias e estrangeiras.</p>
+<p><strong>O que é chave primária?</strong></p>
+<p>Uma chave primária (<em>primary key</em>) é um campo ou conjunto de campos em uma tabela que <strong>identifica unicamente cada registro na tabela</strong>.&nbsp;​</p>
+<p>A chave primária é usada para garantir a integridade dos dados e para permitir a ligação ou relacionamento entre tabelas.</p>
+<p><strong>O que é chave estrangeira?</strong></p>
+<p>Uma chave estrangeira (<em>foreign&nbsp;key</em>) é um campo ou conjunto de campos em uma tabela que se relaciona com a chave primária de outra tabela.​</p>
+<p>A chave estrangeira é usada para estabelecer um relacionamento entre duas tabelas. Ela garante que os dados em uma tabela estejam vinculados aos dados em outra tabela.</p>
+</section>
+<section id="sql-é-único" class="level1">
+<h1>SQL é único?</h1>
+<p>Sim e não, a norma ISO/IEC 9075, também conhecida como SQL:2016, é um padrão internacional que define a sintaxe e semântica da linguagem SQL.</p>
+<p>A norma SQL estabelece uma série de regras e especificações que garantem que os comandos SQL funcionem da mesma maneira em diferentes sistemas de gerenciamento de banco de dados.</p>
+<p>Logo, existem padrões universais a serem seguidos, porém fora estas regras é possível criar diferentes <em>flavors</em> de SQL.</p>
+<p><img src="images/paste-E46DAE06.png" class="img-fluid"></p>
+<p>Alguns exemplos que temos em nossos sistemas:</p>
+<ul>
+<li><p>TGC = <em>Firebird</em></p></li>
+<li><p>ECO (<em>Web</em>) = <em>PostgreSQL</em></p></li>
+<li><p>ECO (Coletor) = <em>SQlite</em></p></li>
+<li><p>Automação (<em>Tablet</em>) = <em>SQLite</em></p></li>
+</ul>
+<p>Todos são regidos pelos conceitos universais de SQL, porém terão funções específicas e algumas sintaxes diferentes.</p>
+<p>Além disto, alguns são tecnologias <em>open-source</em> (PostgreSQL), e outros são pagos (T-SQL).&nbsp;</p>
+</section>
+<section id="o-que-contempla-o-sql" class="level1">
+<h1>O que contempla o SQL?</h1>
+<p>Vimos que o SQL é uma linguagem, porém dentro do SQL temos algumas classificações de comandos e uso, as mais comuns são:<br>
+</p>
+<section id="ddl" class="level3">
+<h3 class="anchored" data-anchor-id="ddl">DDL</h3>
+<p>Do inglês <em>Data Definition Language,</em> é a linguagem de definição de dados que permite criar, modificar e excluir objetos de banco de dados, como tabelas, índices, visões e procedimentos armazenados. Exemplos de comandos DDL são <code>CREATE</code>, <code>ALTER</code> e <code>DROP</code>.</p>
+<p>Esses comandos são usados para definir a estrutura de um banco de dados, incluindo a criação de tabelas, definição de chaves primárias e estrangeiras, adição ou remoção de colunas, entre outros.</p>
+</section>
+<section id="dml" class="level3">
+<h3 class="anchored" data-anchor-id="dml">DML</h3>
+<p>Do inglês <em>Data Manipulation Language,</em> é a linguagem de manipulação de dados que permite inserir, atualizar e excluir dados em uma tabela. Exemplos de comandos DML incluem <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code> e <code>DELETE</code>.</p>
+<p>Esses comandos são usados para inserir, atualizar ou excluir dados em uma tabela existente. Eles permitem que você selecione, filtre e modifique os dados armazenados em um banco de dados.</p>
+</section>
+<section id="dcl" class="level3">
+<h3 class="anchored" data-anchor-id="dcl">DCL</h3>
+<p>Do inglês <em>Data Control Language,</em> é a linguagem usada para controlar o acesso e as permissões aos dados armazenados em um banco de dados. Exemplos de comandos DCL incluem <code>GRANT</code> e <code>REVOKE</code></p>
+</section>
+<section id="tcl" class="level3">
+<h3 class="anchored" data-anchor-id="tcl">TCL</h3>
+<p>Do inglês <em>Transaction Control Language,</em> é a linguagem usada para controlar transações em um banco de dados, incluindo operações de <em>commit</em>, <em>rollback</em> e <em>savepoint</em>.</p>
+</section>
+<section id="outras" class="level3">
+<h3 class="anchored" data-anchor-id="outras">Outras</h3>
+<ul>
+<li><p>DQL, do inglês <em>Data Query Language</em></p></li>
+<li><p>SCL, do inglês <em>Session Control Language</em></p></li>
+<li><p>CCL, do inglês <em>Client Control Language</em></p></li>
+</ul>
+</section>
+</section>
+<section id="o-que-existe-além-de-tabelas-em-um-banco" class="level1">
+<h1>O que existe além de tabelas em um banco?</h1>
+<section id="schemas" class="level2">
+<h2 class="anchored" data-anchor-id="schemas">Schemas</h2>
+<p>Um <em>schema</em> permite agrupar e organizar um conjunto de objetos de banco de dados relacionais, como tabelas, visões, procedimentos armazenados, funções e outros elementos.</p>
+<p>Basicamente ele rege o que e como estarão as entidas e componentes dentro de um banco.</p>
+</section>
+<section id="views" class="level2">
+<h2 class="anchored" data-anchor-id="views">Views</h2>
+<p>É uma consulta salva que é armazenada no banco de dados como um objeto.&nbsp;​</p>
+<p>A <em>view</em> é definida como uma tabela virtual, que é uma tabela que não possui dados físicos armazenados nela, mas que pode ser acessada como uma tabela real através de comandos SQL.</p>
+</section>
+<section id="procedures" class="level2">
+<h2 class="anchored" data-anchor-id="procedures">Procedures</h2>
+<p>É uma rotina de código SQL armazenada no banco de dados como um objeto que permite executar tarefas complexas, encapsular a lógica de negócios, e reutilizar esta lógica.</p>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p>É similar a <em>procedure</em>, porém tem como objetivo primário retornar um valor e ser diretamente utilizadas nas consultas.</p>
+</section>
+<section id="e-como-acesso-um-banco-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="e-como-acesso-um-banco-de-dados">E como acesso um banco de dados?​</h2>
+<p>Existem ferramentas de gerenciamento de banco de dados, como:​</p>
+<ul>
+<li><p><strong>MySQL Workbench</strong>: é uma ferramenta de gerenciamento de banco de dados visual para MySQL. Ele permite criar e gerenciar bancos de dados MySQL, bem como projetar e executar consultas.</p></li>
+<li><p><strong>pgAdmin</strong>: é uma ferramenta de gerenciamento de banco de dados visual para PostgreSQL. Ele permite gerenciar bancos de dados PostgreSQL, bem como projetar e executar consultas.</p></li>
+<li><p><strong>Oracle SQL Developer</strong>: é uma ferramenta de gerenciamento de banco de dados visual para o Oracle Database. Ele permite criar e gerenciar bancos de dados Oracle, bem como projetar e executar consultas.</p></li>
+</ul>
+<p>A ferramenta de recomendação da empresa é o <strong>Dbeaver</strong>, ela é uma ferramenta de código aberto que suporta dezenas de bancos de dados diferentes. Alguns dos motivos de uso são:</p>
+<ol type="1">
+<li><p>O DBeaver oferece recursos avançados de gerenciamento de banco de dados, como criação e gerenciamento de bancos de dados, projeto e execução de consultas, gerenciamento de usuários e permissões, além de importação e exportação de dados.</p></li>
+<li><p>Ele também possui uma interface de usuário intuitiva e personalizável, permitindo que os usuários ajustem a aparência e o comportamento da ferramenta de acordo com suas preferências.</p></li>
+<li><p>O DBeaver é compatível com vários sistemas operacionais, incluindo Windows, macOS e Linux, e pode ser usado tanto por desenvolvedores quanto por administradores de banco de dados.</p></li>
+<li><p>Além disso, ele possui uma grande comunidade de usuários e é frequentemente atualizado com novos recursos e melhorias.</p></li>
+</ol>
+<p>Estas ferramentas são auxiliares, ou seja, não afetam em nada a escrita das consultas, o que muda entre elas?</p>
+<ul>
+<li><p>Formas de visualização dos dados e afins</p></li>
+<li><p>Formas de exportação</p></li>
+<li><p>Conectores para diferentes bancos</p></li>
+<li><p>Entre outras funções relativas ao uso geral do banco</p></li>
+</ul>
+</section>
+</section>
+<section id="existem-bancos-não-relacionais" class="level1">
+<h1>Existem bancos não-relacionais?</h1>
+<p>Sim,&nbsp;também conhecidos como bancos de dados <em>NoSQL</em> (<em>Not Only SQL</em>).​</p>
+<p>Eles utilizam outros modelos de dados, distintos da relação entre tabelas, como: documentos, grafos, chave-valor, colunas amplas, entre outros.&nbsp;​</p>
+<p>Cada modelo tem suas próprias características e é otimizado para diferentes tipos de aplicação e necessidades de armazenamento e consulta de dados.</p>
+<p>Alguns exemplos:</p>
+<ol type="1">
+<li><p><strong>MongoDB</strong>: um banco de dados de documentos que armazena os dados em documentos JSON com campos e valores.</p></li>
+<li><p><strong>Cassandra</strong>: um banco de dados de colunas amplamente utilizado para armazenamento em larga escala e alta disponibilidade de dados distribuídos.</p></li>
+<li><p><strong>Couchbase</strong>: um banco de dados de documentos e chave-valor distribuído, que oferece alta disponibilidade, escalabilidade e desempenho.</p></li>
+<li><p><strong>Redis</strong>: um banco de dados em memória que armazena os dados como pares chave-valor, sendo amplamente utilizado para <em>caching</em> e gerenciamento de sessão.</p></li>
+<li><p><strong>Neo4j</strong>: um banco de dados de grafos que armazena os dados em grafos, permitindo a modelagem e consulta de relacionamentos complexos entre os dados.</p></li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
