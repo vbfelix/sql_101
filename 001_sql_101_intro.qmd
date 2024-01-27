@@ -129,23 +129,23 @@ Do inglês *Transaction Control Language,* é a linguagem usada para controlar t
 
 # O que existe além de tabelas em um banco?
 
-## Schemas
+## *Schemas*
 
 Um *schema* permite agrupar e organizar um conjunto de objetos de banco de dados relacionais, como tabelas, visões, procedimentos armazenados, funções e outros elementos.
 
 Basicamente ele rege o que e como estarão as entidas e componentes dentro de um banco.
 
-## Views
+## *Views*
 
 É uma consulta salva que é armazenada no banco de dados como um objeto. ​
 
 A *view* é definida como uma tabela virtual, que é uma tabela que não possui dados físicos armazenados nela, mas que pode ser acessada como uma tabela real através de comandos SQL.
 
-## Procedures
+## *Procedures*
 
 É uma rotina de código SQL armazenada no banco de dados como um objeto que permite executar tarefas complexas, encapsular a lógica de negócios, e reutilizar esta lógica.
 
-## Functions
+## *Functions*
 
 É similar a *procedure*, porém tem como objetivo primário retornar um valor e ser diretamente utilizadas nas consultas.
 
@@ -159,15 +159,15 @@ Existem ferramentas de gerenciamento de banco de dados, como:​
 
 -   **Oracle SQL Developer**: é uma ferramenta de gerenciamento de banco de dados visual para o Oracle Database. Ele permite criar e gerenciar bancos de dados Oracle, bem como projetar e executar consultas.
 
-A ferramenta de recomendação da empresa é o **Dbeaver**, ela é uma ferramenta de código aberto que suporta dezenas de bancos de dados diferentes. Alguns dos motivos de uso são:
+-    **Dbeaver**: é uma ferramenta de código aberto que suporta dezenas de bancos de dados diferentes. Alguns dos motivos de uso são:
 
-1.  O DBeaver oferece recursos avançados de gerenciamento de banco de dados, como criação e gerenciamento de bancos de dados, projeto e execução de consultas, gerenciamento de usuários e permissões, além de importação e exportação de dados.
+    -   O DBeaver oferece recursos avançados de gerenciamento de banco de dados, como criação e gerenciamento de bancos de dados, projeto e execução de consultas, gerenciamento de usuários e permissões, além de importação e exportação de dados.
 
-2.  Ele também possui uma interface de usuário intuitiva e personalizável, permitindo que os usuários ajustem a aparência e o comportamento da ferramenta de acordo com suas preferências.
+    -   Ele também possui uma interface de usuário intuitiva e personalizável, permitindo que os usuários ajustem a aparência e o comportamento da ferramenta de acordo com suas preferências.
 
-3.  O DBeaver é compatível com vários sistemas operacionais, incluindo Windows, macOS e Linux, e pode ser usado tanto por desenvolvedores quanto por administradores de banco de dados.
+    -   Compatível com vários sistemas operacionais, incluindo Windows, macOS e Linux, e pode ser usado tanto por desenvolvedores quanto por administradores de banco de dados.
 
-4.  Além disso, ele possui uma grande comunidade de usuários e é frequentemente atualizado com novos recursos e melhorias.
+    -   Além disso, ele possui uma grande comunidade de usuários e é frequentemente atualizado com novos recursos e melhorias.
 
 Estas ferramentas são auxiliares, ou seja, não afetam em nada a escrita das consultas, o que muda entre elas?
 
@@ -175,7 +175,7 @@ Estas ferramentas são auxiliares, ou seja, não afetam em nada a escrita das co
 
 -   Formas de exportação
 
--   Conectores para diferentes bancos
+-   Conectores nativos para diferentes bancos
 
 -   Entre outras funções relativas ao uso geral do banco
 

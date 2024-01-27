@@ -31,14 +31,16 @@ O comando `LEFT JOIN` é usado para combinar linhas de duas tabelas com base em 
 
 ​Vamos adicionar o nome da raça na tabela animais, para tal vamos identificar primeiro quais as chaves de cada tabela.
 
-    SELECT 
-    	racas_id AS raca_id,
-    	r.nome AS raca_nome
-    FROM animais a 
-    LEFT JOIN racas r ON a.racas_id = r.id
-    ;
-    
-No exemplo acima, fazemos a junção das tabelas `animais` e `racas` com seus respectivos *alias* `a` e `r`, em que equivalemos os campo `a.racas_id` (chave estrangeira) a `r.id` (chave primária) 
+```         
+SELECT 
+    racas_id AS raca_id,
+    r.nome AS raca_nome
+FROM animais a 
+LEFT JOIN racas r ON a.racas_id = r.id
+;
+```
+
+No exemplo acima, fazemos a junção das tabelas `animais` e `racas` com seus respectivos *alias* `a` e `r`, em que equivalemos os campo `a.racas_id` (chave estrangeira) a `r.id` (chave primária)
 
 ## RIGHT JOIN
 
@@ -50,12 +52,14 @@ O comando `RIGHT JOIN` é usado para combinar linhas de duas tabelas com base em
 
 Não é tão usado, pois pode gerar o mesmo resultado do `LEFT JOIN`, vamos replicar o exemplo anterior:
 
-    SELECT 
-    	racas_id AS raca_id,
-    	r.nome AS raca_nome
-    FROM racas r 
-    RIGHT JOIN animais a ON a.racas_id = r.id
-    ;
+```         
+SELECT 
+    racas_id AS raca_id,
+    r.nome AS raca_nome
+FROM racas r 
+RIGHT JOIN animais a ON a.racas_id = r.id
+;
+```
 
 ## INNER JOIN
 
@@ -81,12 +85,14 @@ O comando `UNION` remove linhas duplicadas do resultado final, a menos que a pal
 
 Vamos selecionar os animais que passaram por uma aplicação sanitária ou que foram movimentados.
 
-    SELECT va.animal_id, 'sanidade' AS tipo
-    FROM vacinacao_animais va -- Tabela de aplicações sanitárias
-    UNION -- Empilha os dados
-    SELECT DISTINCT(am.animal_id), 'movimentação' AS tipo
-    FROM animais_movimentacoes am -- Tabela de animais movimentados
-    ;
+```         
+SELECT va.animal_id, 'sanidade' AS tipo
+FROM vacinacao_animais va -- Tabela de aplicações sanitárias
+UNION -- Empilha os dados
+SELECT DISTINCT(am.animal_id), 'movimentação' AS tipo
+FROM animais_movimentacoes am -- Tabela de animais movimentados
+;
+```
 
 # *Subquery*/Sub-consulta
 
@@ -98,37 +104,40 @@ Vamos selecionar os animais que passaram por uma aplicação sanitária ou que f
 
 Vamos calcular a quantidade de animais por status, o total e a porcentagem por status
 
-    SELECT 
-    	a.status,
-    	COUNT(*) as animais_status,
-    	(SELECT COUNT(*) FROM animais) AS total,
-    	100*COUNT(*)/(SELECT COUNT(*) FROM animais) AS perc
-    FROM animais a 
-    GROUP BY a.status
-    
+```         
+SELECT 
+    a.status,
+    COUNT(*) as animais_status,
+    (SELECT COUNT(*) FROM animais) AS total,
+    100*COUNT(*)/(SELECT COUNT(*) FROM animais) AS perc
+FROM animais a 
+GROUP BY a.status
+```
+
 # Funções condicionais
 
 ## CASE_WHEN
 
 ### Descrição
 
-O comando `CASE_WHEN` é uma forma de criar expressões condicionais em uma consulta, permitindo que você especifique uma série de condições e retorne um valor diferente para cada condição. 
+O comando `CASE_WHEN` é uma forma de criar expressões condicionais em uma consulta, permitindo que você especifique uma série de condições e retorne um valor diferente para cada condição.
 
 ### Sintaxe/Exemplo
 
-    SELECT 
-      CASE
-      	WHEN dt_nascimento IS NULL THEN dt_register
-      	ELSE dt_nascimento 
-      END	AS dt_nasc
-    FROM animais
-    WHERE dt_nascimento IS NULL
-    ;
+```         
+SELECT 
+  CASE
+    WHEN dt_nascimento IS NULL THEN dt_register
+    ELSE dt_nascimento 
+  END   AS dt_nasc
+FROM animais
+WHERE dt_nascimento IS NULL
+;
+```
 
-No exemplo acima quando o campo `dt_nascimento` é nulo o valor retornado é o do campo `dt_register`, caso contrário mantém-se a o valor do campo `dt_nascimento`.  
+No exemplo acima quando o campo `dt_nascimento` é nulo o valor retornado é o do campo `dt_register`, caso contrário mantém-se a o valor do campo `dt_nascimento`.
 
 Neste caso só existem dois cenários, porém podemos colocar quantos cenários e condições quisermos.
-    
 
 ## COALESCE
 
@@ -138,8 +147,10 @@ O comando `COALESCE` pode ser visto como uma caso específico do `CASE_WHEN`, em
 
 ### Sintaxe/Exemplo
 
-    SELECT 
-      COALESCE(dt_nascimento,dt_register) AS dt_nasc
-    FROM animais
-    WHERE dt_nascimento IS NULL
-    ;
+```         
+SELECT 
+  COALESCE(dt_nascimento,dt_register) AS dt_nasc
+FROM animais
+WHERE dt_nascimento IS NULL
+;
+```

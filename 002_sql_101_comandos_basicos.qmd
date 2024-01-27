@@ -28,9 +28,11 @@ O comando `FROM` é usado para especificar a tabela a partir das quais os dados
 
 ### Sintaxe/exemplo
 
-    SELECT *
-    FROM animais a
-    ;
+```         
+SELECT *
+FROM animais a
+;
+```
 
 No exemplo acima selecionamos todos os campos da tabela de nome `animais`
 
@@ -46,9 +48,11 @@ O comando `SELECT` é usado para selecionar dados de uma tabela, deve ser seguid
 
 ### Sintaxe/exemplo
 
-    SELECT a.id
-    FROM animais a
-    ;
+```         
+SELECT a.id
+FROM animais a
+;
+```
 
 No exemplo acima selecionamos o campo `id` de cada linha da tabela `animal`.
 
@@ -62,9 +66,11 @@ No exemplo acima selecionamos o campo `id` de cada linha da tabela `animal`.
 
 <!-- -->
 
-    SELECT a.id AS animal_id
-    FROM animais a
-    ;
+```         
+SELECT a.id AS animal_id
+FROM animais a
+;
+```
 
 ## WHERE
 
@@ -74,10 +80,12 @@ O comando `WHERE` é usado para filtrar os resultados de uma consulta `SELECT`, 
 
 ### Sintaxe/exemplo
 
-    SELECT *
-    FROM animais a
-    WHERE a.status = 1
-    ;
+```         
+SELECT *
+FROM animais a
+WHERE a.status = 1
+;
+```
 
 No exemplo acima selecionamos todos os registros cujo campo `status` seja igual a 1.
 
@@ -89,56 +97,70 @@ Para aplicar condições no filtro precisamos usar operadores, os principais sã
 
 A igualdade é dada pelo símbolo `=`
 
-    SELECT *
-    FROM animais a
-    WHERE a.status = 1
-    ;
+```         
+SELECT *
+FROM animais a
+WHERE a.status = 1
+;
+```
 
 No caso de texto temos que nos lembrar das aspas
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome = 'Nelore'
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome = 'Nelore'
+;
+```
 
 #### Diferente
 
 O contrário da igualdade, pode variar com o SQL vamos normalmente é dado por `!=` ou `<>`
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome <> 'Nelore'
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome <> 'Nelore'
+;
+```
 
 #### Maior/menor
 
 No caso de menor que:
 
-    SELECT *
-    FROM animais_peso ap 
-    WHERE peso < 500
-    ;
+```         
+SELECT *
+FROM animais_peso ap 
+WHERE peso < 500
+;
+```
 
 No caso menor ou igual que
 
-    SELECT *
-    FROM animais_peso ap 
-    WHERE peso <= 500
-    ;
+```         
+SELECT *
+FROM animais_peso ap 
+WHERE peso <= 500
+;
+```
 
 No caso de maior que:
 
-    SELECT *
-    FROM animais_peso ap 
-    WHERE peso > 500
-    ;
+```         
+SELECT *
+FROM animais_peso ap 
+WHERE peso > 500
+;
+```
 
 No caso maior ou igual que
 
-    SELECT *
-    FROM animais_peso ap 
-    WHERE peso > 500
-    ;
+```         
+SELECT *
+FROM animais_peso ap 
+WHERE peso > 500
+;
+```
 
 #### AND e OR
 
@@ -146,28 +168,34 @@ Estes operadores permitem encadear múltiplos operadores, seja com condições c
 
 Imagine que queiramos o `id` das raças `Nelore` e `Nelore Mocho`:
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome = 'Nelore' OR r.nome = 'Nelore Mocho'
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome = 'Nelore' OR r.nome = 'Nelore Mocho'
+;
+```
 
 Neste caso aplicamos `OR` pois um animal não pode ter duas raças nesta tabela.
 
 Agora imaginemos que queiramos as raças acimas, desde que estejam ativas, isto é, `status = 1`
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome = 'Nelore' OR r.nome = 'Nelore Mocho' AND r.status = 1
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome = 'Nelore' OR r.nome = 'Nelore Mocho' AND r.status = 1
+;
+```
 
 #### IN
 
 No exemplo acima, vimos que precisamos repetir alguns comandos para igualar as raças, o operador IN tem como função filtrar os valores contidos em um vetor de valores.
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome IN ('Nelore','Nelore Mocho')
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome IN ('Nelore','Nelore Mocho')
+;
+```
 
 No exemplo acima colocamos entre parênteses as duas raças de interesse
 
@@ -175,15 +203,17 @@ No exemplo acima colocamos entre parênteses as duas raças de interesse
 
 Porém quando tratamos de texto podemos ter casos em que não temos certeza dos termos integrais de interesse, desta forma o comando `LIKE` permite esta comparação parcial.
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome LIKE 'Nelore%'
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome LIKE 'Nelore%'
+;
+```
 
 No exemplo acima buscamos as raças que começam com `'Nelore'` , a seguir veremos como usar o símbolo `%` aliado ao `LIKE` , considerando um campo de texto chamado `Name`
 
 | **LIKE ​**                | **Descrição​**                                          |
-|------------------------|-----------------------------------------------|
+|--------------------------|--------------------------------------------------------|
 | WHERE Name LIKE 'a%'​     | Termos que começam com "a"​                             |
 | WHERE Name LIKE '%a'​     | Termos que terminam com "a"​                            |
 | WHERE Name LIKE '%or%'​   | Termos que contém "or"​                                 |
@@ -198,10 +228,12 @@ No exemplo acima buscamos as raças que começam com `'Nelore'` , a seguir verem
 
 Como podemos aplicar então?
 
-    SELECT *
-    FROM animais a 
-    WHERE a.dt_nascimento IS NULL
-    ;
+```         
+SELECT *
+FROM animais a 
+WHERE a.dt_nascimento IS NULL
+;
+```
 
 No exemplo acima selecionamos animais cuja data de nascimento está vazio.
 
@@ -211,24 +243,30 @@ Nota-se o uso também do operador `IS` , isto se dá pois para filtrar um valor 
 
 O operador `NOT` implica em negação, este pode ser utilizado para negar qualquer condição
 
-    SELECT *
-    FROM animais a 
-    WHERE a.dt_nascimento IS NOT NULL
-    ;
+```         
+SELECT *
+FROM animais a 
+WHERE a.dt_nascimento IS NOT NULL
+;
+```
 
 No exemplo acima temos os animais cuja data de nascimento está preenchida.
 
-    SELECT r.id
-    FROM racas r
-    WHERE NOT(r.nome IN ('Nelore','Nelore Mocho'))
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE NOT(r.nome IN ('Nelore','Nelore Mocho'))
+;
+```
 
 No exemplo acima temos as raças que não `Nelore` e `Nelore Mocho` . Poderíamos também reescrever da seguinte forma:
 
-    SELECT r.id
-    FROM racas r
-    WHERE r.nome NOT IN ('Nelore','Nelore Mocho')
-    ;
+```         
+SELECT r.id
+FROM racas r
+WHERE r.nome NOT IN ('Nelore','Nelore Mocho')
+;
+```
 
 ## GROUP BY
 
@@ -244,9 +282,11 @@ Este tipo de função tem por natureza gerar um resultado cujo tamanho seja infe
 
 Talvez a função mais famosa de sumarização seja a função de contagem, que conta o número de linhas, e é dada pelo comando `COUNT`
 
-    SELECT COUNT(*)
-    FROM animais a
-    ;
+```         
+SELECT COUNT(*)
+FROM animais a
+;
+```
 
 No exemplo acima contamos o número total de registros na tabela.
 
@@ -254,9 +294,11 @@ No exemplo acima contamos o número total de registros na tabela.
 
 Digamos que queiramos as raças distintas (únicas) presentes no cliente
 
-    SELECT DISTINCT(a.racas_id)
-    FROM animais a
-    ;
+```         
+SELECT DISTINCT(a.racas_id)
+FROM animais a
+;
+```
 
 No exemplo acima retornaremos as raças únicas na tabela, sem considerar a quantidade.
 
@@ -276,9 +318,11 @@ Para aplicar funções básicas da estatísticas temos os seguintes comandos:
 
 Podemos também combinar funções, digamos que queremos saber quantas raças o cliente possui
 
-    SELECT COUNT(DISTINCT(a.racas_id))
-    FROM animais a
-    ;
+```         
+SELECT COUNT(DISTINCT(a.racas_id))
+FROM animais a
+;
+```
 
 No exemplo acima temos o número de raças distintas presentes nos animais.
 
@@ -286,10 +330,12 @@ No exemplo acima temos o número de raças distintas presentes nos animais.
 
 Entendendo as funções de sumarização vamos agora aplicar estas funções por uma ou mais variáveis.
 
-    SELECT a.status,COUNT(*)
-    FROM animais a 
-    GROUP BY a.status
-    ;
+```         
+SELECT a.status,COUNT(*)
+FROM animais a 
+GROUP BY a.status
+;
+```
 
 No exemplo acima contamos o número de linhas por `status`, ou seja, temos o número de animais para cada status, importante notar que o campo se repete tanto `SELECT` quanto no `GROUP BY`, o motivo é que ao existir no `SELECT` este dá visibilidade para saber o que cada contagem remete.
 
@@ -305,11 +351,13 @@ Ou seja, é um `WHERE` para funções de sumarização quando uso `GROUP BY`
 
 Digamos que queira saber quantos registros de animais existem por `status`, que possuem mais de 1.000 registros?
 
-    SELECT a.status,COUNT(*)
-    FROM animais a 
-    GROUP BY a.status
-    HAVING COUNT(*) > 1000
-    ;
+```         
+SELECT a.status,COUNT(*)
+FROM animais a 
+GROUP BY a.status
+HAVING COUNT(*) > 1000
+;
+```
 
 ## ORDER BY
 
@@ -321,30 +369,36 @@ O comando `ORDER BY` é usado para ordenar os resultados de uma consulta `SELECT
 
 Vamos repetir o exemplo visto no comando `HAVING`, porém ordenando os valores pelo número do status de forma crescente
 
-    SELECT status,COUNT(*)
-    FROM animais a 
-    GROUP BY status
-    HAVING COUNT(*) > 1000
-    ORDER BY status
-    ;
+```         
+SELECT status,COUNT(*)
+FROM animais a 
+GROUP BY status
+HAVING COUNT(*) > 1000
+ORDER BY status
+;
+```
 
 Por padrão o `ORDER BY` faz a ordenção por ordem crescente, porém podemos enunciar isto ao adicionar o comando `ASC`
 
-    SELECT status,COUNT(*)
-    FROM animais a 
-    GROUP BY status
-    HAVING COUNT(*) > 1000
-    ORDER BY status ASC
-    ;
+```         
+SELECT status,COUNT(*)
+FROM animais a 
+GROUP BY status
+HAVING COUNT(*) > 1000
+ORDER BY status ASC
+;
+```
 
 Caso desejemos a ordem decrescente
 
-    SELECT status,COUNT(*)
-    FROM animais a 
-    GROUP BY status
-    HAVING COUNT(*) > 1000
-    ORDER BY status DESC
-    ;
+```         
+SELECT status,COUNT(*)
+FROM animais a 
+GROUP BY status
+HAVING COUNT(*) > 1000
+ORDER BY status DESC
+;
+```
 
 # Boas práticas
 
